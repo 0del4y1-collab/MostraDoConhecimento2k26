@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guardiãs do Meio Ambiente e da História</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f4f7f4;
+            color: #2c3e50;
+            line-height: 1.6;
+        }
+
+        /* Cabeçalho principal */
+        header {
+            background: linear-gradient(135deg, #1e4620, #388e3c);
+            color: #ffffff;
+            text-align: center;
+            padding: 60px 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.95;
+        }
+
+        /* Área do conteúdo */
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .intro-text {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .intro-text h2 {
+            font-size: 2rem;
+            color: #1e4620;
+            margin-bottom: 10px;
+        }
+
+        .intro-text p {
+            color: #555;
+            font-size: 1.1rem;
+        }
+
+        /* Organização dos cartões */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-header {
+            padding: 25px 20px 15px;
+            color: white;
+            text-align: center;
+        }
+
+        .card-carson .card-header { background-color: #1b5e20; }
+        .card-maathai .card-header { background-color: #2e7d32; }
+        .card-guidon .card-header { background-color: #d84315; }
+
+        .card-header h3 {
+            font-size: 1.6rem;
+            margin-bottom: 5px;
+        }
+
+        .card-header span {
+            font-size: 0.9rem;
+            font-style: italic;
+            opacity: 0.9;
+        }
+
+        .card-body {
+            padding: 25px 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card-body p {
+            color: #444;
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+
+        /* Botões */
+        .btn {
+            display: inline-block;
+            text-align: center;
+            padding: 12px 20px;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: opacity 0.2s ease;
+        }
+
+        .card-carson .btn { background-color: #1b5e20; }
+        .card-maathai .btn { background-color: #2e7d32; }
+        .card-guidon .btn { background-color: #d84315; }
+
+        .btn:hover {
+            opacity: 0.9;
+        }
+
+        /* Rodapé */
+        footer {
+            text-align: center;
+            padding: 25px 20px;
+            background-color: #1e4620;
+            color: #ffffff;
+            margin-top: 60px;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Mensagem de Boas-Vindas -->
+    <header>
+        <h1>Bem-vindos ao nosso trabalho!</h1>
+        <p>Uma homenagem às pioneiras que transformaram a ciência, a arqueologia e a preservação do meio ambiente no mundo.</p>
+    </header>
+
+    <main class="container">
+        <section class="intro-text">
+            <h2>Mulheres, Meio Ambiente e História</h2>
+            <p>Conheça a história de três mulheres inspiradoras e o legado que deixaram para o planeta.</p>
+        </section>
+
+        <section class="cards-grid">
+            
+            <!-- Rachel Carson -->
+            <article class="card card-carson">
+                <div class="card-header">
+                    <h3>Rachel Carson</h3>
+                    <span>Bióloga Marinha e Escritora</span>
+                </div>
+                <div class="card-body">
+                    <p>Autora de <em>Primavera Silenciosa</em>, obra essencial que alertou sobre o perigo dos agrotóxicos e deu início ao movimento ambientalista moderno.</p>
+                    <a href="https://pt.wikipedia.org/wiki/Rachel_Carson" target="_blank" class="btn">Saiba mais sobre Rachel</a>
+                </div>
+            </article>
+
+            <!-- Wangari Maathai -->
+            <article class="card card-maathai">
+                <div class="card-header">
+                    <h3>Wangari Maathai</h3>
+                    <span>Ativista e Prêmio Nobel da Paz</span>
+                </div>
+                <div class="card-body">
+                    <p>Criadora do <em>Movimento Cinturão Verde</em> no Quênia. Foi a primeira mulher africana a receber o Nobel da Paz pelo trabalho com reflorestamento comunitário.</p>
+                    <a href="https://pt.wikipedia.org/wiki/Wangari_Maathai" target="_blank" class="btn">Saiba mais sobre Wangari</a>
+                </div>
+            </article>
+
+            <!-- Niéde Guidon -->
+            <article class="card card-guidon">
+                <div class="card-header">
+                    <h3>Niéde Guidon</h3>
+                    <span>Arqueóloga Brasileira</span>
+                </div>
+                <div class="card-body">
+                    <p>Liderou a preservação da Serra da Capivara no Piauí, revelando pinturas rupestres e novos dados sobre a presença humana nas Américas.</p>
+                    <a href="https://pt.wikipedia.org/wiki/Ni%C3%A9de_Guidon" target="_blank" class="btn">Saiba mais sobre Niéde</a>
+                </div>
+            </article>
+
+        </section>
+    </main>
+
+    <footer>
+        <p>Trabalho publicado via GitHub Pages | Preservando o Meio Ambiente e a Memória</p>
+    </footer>
+
+</body>
+</html>
