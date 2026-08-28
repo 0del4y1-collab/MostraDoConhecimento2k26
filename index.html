@@ -14,18 +14,18 @@
                         url('https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
             color: #ffffff;
             text-align: center;
-            padding: 100px 20px;
+            padding: 90px 20px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
-        .hero h1 { font-size: 3.2rem; margin-bottom: 20px; font-weight: 800; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
-        .hero p { font-size: 1.3rem; max-width: 800px; margin: 0 auto; opacity: 0.95; }
+        .hero h1 { font-size: 3rem; margin-bottom: 15px; font-weight: 800; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+        .hero p { font-size: 1.25rem; max-width: 800px; margin: 0 auto; opacity: 0.95; }
 
         .container { max-width: 1200px; margin: 50px auto; padding: 0 20px; }
 
         .intro-section { text-align: center; margin-bottom: 50px; }
-        .intro-section h2 { font-size: 2.3rem; color: #1e4620; margin-bottom: 15px; }
-        .intro-section p { color: #555; font-size: 1.15rem; max-width: 850px; margin: 0 auto; }
+        .intro-section h2 { font-size: 2.2rem; color: #1e4620; margin-bottom: 15px; }
+        .intro-section p { color: #555; font-size: 1.1rem; max-width: 850px; margin: 0 auto; }
 
         /* Grade de Cartões */
         .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 35px; }
@@ -42,13 +42,13 @@
 
         .card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0, 0, 0, 0.18); }
 
-        .card-img-container { height: 260px; overflow: hidden; position: relative; }
-        .card-img-container img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
-        .card:hover .card-img-container img { transform: scale(1.08); }
+        .card-img-container { height: 280px; overflow: hidden; position: relative; background-color: #e0e0e0; }
+        .card-img-container img { width: 100%; height: 100%; object-fit: cover; object-position: top; transition: transform 0.5s ease; }
+        .card:hover .card-img-container img { transform: scale(1.05); }
 
         .card-body { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
         .card-body h3 { font-size: 1.8rem; color: #1e4620; margin-bottom: 5px; }
-        .card-body .subtitle { font-size: 0.95rem; color: #e65100; font-weight: bold; margin-bottom: 15px; text-transform: uppercase; }
+        .card-body .subtitle { font-size: 0.9rem; color: #d84315; font-weight: bold; margin-bottom: 15px; text-transform: uppercase; }
         .card-body p { color: #555; font-size: 1rem; margin-bottom: 25px; flex-grow: 1; }
 
         .btn {
@@ -70,11 +70,11 @@
         .card-guidon .btn { background-color: #d84315; }
         .card-guidon .btn:hover { background-color: #9a2b09; }
 
-        /* Seção de Frases Impactantes */
-        .quotes-section { background: #e8f5e9; padding: 60px 20px; border-radius: 15px; margin-top: 60px; text-align: center; }
-        .quotes-section h2 { font-size: 2rem; color: #1e4620; margin-bottom: 30px; }
-        .quote-box { background: white; padding: 25px; border-radius: 10px; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); font-style: italic; }
-        .quote-author { font-style: normal; font-weight: bold; color: #1e4620; margin-top: 10px; display: block; }
+        /* Seção de Frases */
+        .quotes-section { background: #e8f5e9; padding: 50px 20px; border-radius: 15px; margin-top: 60px; text-align: center; }
+        .quotes-section h2 { font-size: 2rem; color: #1e4620; margin-bottom: 25px; }
+        .quote-box { background: white; padding: 20px; border-radius: 10px; margin-bottom: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); font-style: italic; }
+        .quote-author { font-style: normal; font-weight: bold; color: #1e4620; margin-top: 8px; display: block; }
 
         footer { text-align: center; padding: 30px 20px; background-color: #1e4620; color: #ffffff; margin-top: 60px; font-size: 1rem; }
     </style>
@@ -97,7 +97,7 @@
             <!-- Rachel Carson -->
             <article class="card card-carson">
                 <div class="card-img-container">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/f/f3/Rachel-Carson.jpg" alt="Rachel Carson">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/f/f3/Rachel-Carson.jpg" alt="Rachel Carson" referrerpolicy="no-referrer">
                 </div>
                 <div class="card-body">
                     <div>
@@ -112,7 +112,7 @@
             <!-- Wangari Maathai -->
             <article class="card card-maathai">
                 <div class="card-img-container">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a2/Wangari_Maathai_2001.jpg" alt="Wangari Maathai">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a2/Wangari_Maathai_2001.jpg" alt="Wangari Maathai" referrerpolicy="no-referrer">
                 </div>
                 <div class="card-body">
                     <div>
@@ -127,7 +127,7 @@
             <!-- Niéde Guidon -->
             <article class="card card-guidon">
                 <div class="card-img-container">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/eb/Ni%C3%A9de_Guidon_em_2015.jpg" alt="Niéde Guidon">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/eb/Ni%C3%A9de_Guidon_em_2015.jpg" alt="Niéde Guidon" referrerpolicy="no-referrer">
                 </div>
                 <div class="card-body">
                     <div>
