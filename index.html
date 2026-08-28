@@ -3,202 +3,163 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guardiãs da Natureza e da História</title>
+    <title>Guardiãs da Natureza e da História | Mostra do Conhecimento</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #f4f7f4; color: #2c3e50; line-height: 1.6; }
 
-        body {
-            background-color: #f4f7f4;
-            color: #2c3e50;
-            line-height: 1.6;
-        }
-
-        header {
-            background: linear-gradient(135deg, #1e4620, #388e3c);
+        /* Banner de Destaque */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                        url('https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
             color: #ffffff;
             text-align: center;
-            padding: 60px 20px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            padding: 100px 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
-        header h1 {
-            font-size: 2.8rem;
-            margin-bottom: 15px;
-            font-weight: 700;
-        }
+        .hero h1 { font-size: 3.2rem; margin-bottom: 20px; font-weight: 800; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+        .hero p { font-size: 1.3rem; max-width: 800px; margin: 0 auto; opacity: 0.95; }
 
-        header p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto;
-            opacity: 0.95;
-        }
+        .container { max-width: 1200px; margin: 50px auto; padding: 0 20px; }
 
-        .container {
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
+        .intro-section { text-align: center; margin-bottom: 50px; }
+        .intro-section h2 { font-size: 2.3rem; color: #1e4620; margin-bottom: 15px; }
+        .intro-section p { color: #555; font-size: 1.15rem; max-width: 850px; margin: 0 auto; }
 
-        .intro-text {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .intro-text h2 {
-            font-size: 2rem;
-            color: #1e4620;
-            margin-bottom: 10px;
-        }
-
-        .intro-text p {
-            color: #555;
-            font-size: 1.1rem;
-        }
-
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
+        /* Grade de Cartões */
+        .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 35px; }
 
         .card {
             background: #ffffff;
-            border-radius: 12px;
+            border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             display: flex;
             flex-direction: column;
         }
 
-        .card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
-        }
+        .card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0, 0, 0, 0.18); }
 
-        .card-header {
-            padding: 25px 20px 15px;
-            color: white;
-            text-align: center;
-        }
+        .card-img-container { height: 260px; overflow: hidden; position: relative; }
+        .card-img-container img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .card:hover .card-img-container img { transform: scale(1.08); }
 
-        .card-carson .card-header { background-color: #1b5e20; }
-        .card-maathai .card-header { background-color: #2e7d32; }
-        .card-guidon .card-header { background-color: #d84315; }
-
-        .card-header h3 {
-            font-size: 1.6rem;
-            margin-bottom: 5px;
-        }
-
-        .card-header span {
-            font-size: 0.9rem;
-            font-style: italic;
-            opacity: 0.9;
-        }
-
-        .card-body {
-            padding: 25px 20px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .card-body p {
-            color: #444;
-            font-size: 1rem;
-            margin-bottom: 20px;
-        }
+        .card-body { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
+        .card-body h3 { font-size: 1.8rem; color: #1e4620; margin-bottom: 5px; }
+        .card-body .subtitle { font-size: 0.95rem; color: #e65100; font-weight: bold; margin-bottom: 15px; text-transform: uppercase; }
+        .card-body p { color: #555; font-size: 1rem; margin-bottom: 25px; flex-grow: 1; }
 
         .btn {
-            display: inline-block;
+            display: block;
             text-align: center;
-            padding: 12px 20px;
+            padding: 14px 20px;
             color: #ffffff;
             text-decoration: none;
-            border-radius: 6px;
-            font-weight: 600;
-            transition: opacity 0.2s ease;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: background 0.3s ease;
         }
 
         .card-carson .btn { background-color: #1b5e20; }
+        .card-carson .btn:hover { background-color: #123e15; }
         .card-maathai .btn { background-color: #2e7d32; }
+        .card-maathai .btn:hover { background-color: #1b5e20; }
         .card-guidon .btn { background-color: #d84315; }
+        .card-guidon .btn:hover { background-color: #9a2b09; }
 
-        .btn:hover {
-            opacity: 0.9;
-        }
+        /* Seção de Frases Impactantes */
+        .quotes-section { background: #e8f5e9; padding: 60px 20px; border-radius: 15px; margin-top: 60px; text-align: center; }
+        .quotes-section h2 { font-size: 2rem; color: #1e4620; margin-bottom: 30px; }
+        .quote-box { background: white; padding: 25px; border-radius: 10px; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); font-style: italic; }
+        .quote-author { font-style: normal; font-weight: bold; color: #1e4620; margin-top: 10px; display: block; }
 
-        footer {
-            text-align: center;
-            padding: 25px 20px;
-            background-color: #1e4620;
-            color: #ffffff;
-            margin-top: 60px;
-            font-size: 0.9rem;
-        }
+        footer { text-align: center; padding: 30px 20px; background-color: #1e4620; color: #ffffff; margin-top: 60px; font-size: 1rem; }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>Bem-vindos ao nosso trabalho!</h1>
-        <p>Uma homenagem às pioneiras que transformaram a ciência, a arqueologia e a preservação do meio ambiente no mundo.</p>
-    </header>
+    <section class="hero">
+        <h1>Bem-vindos ao Nosso Trabalho!</h1>
+        <p>Homenagem às pioneiras que transformaram a ciência, a arqueologia e a preservação do meio ambiente no planeta.</p>
+    </section>
 
     <main class="container">
-        <section class="intro-text">
-            <h2>Mulheres, Meio Ambiente e História</h2>
-            <p>Conheça a história detalhada de três mulheres inspiradoras e o legado que deixaram para o planeta.</p>
+        <section class="intro-section">
+            <h2>Mulheres que Mudaram o Mundo</h2>
+            <p>Conheça a trajetória, os livros, as descobertas e a luta de três das mais importantes ativistas e cientistas da história moderna. Clique nos cartões abaixo para explorar a biografia completa de cada uma.</p>
         </section>
 
         <section class="cards-grid">
             
+            <!-- Rachel Carson -->
             <article class="card card-carson">
-                <div class="card-header">
-                    <h3>Rachel Carson</h3>
-                    <span>Bióloga Marinha e Escritora</span>
+                <div class="card-img-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/f/f3/Rachel-Carson.jpg" alt="Rachel Carson">
                 </div>
                 <div class="card-body">
-                    <p>Autora de <em>Primavera Silenciosa</em>, obra essencial que alertou sobre o perigo dos agrotóxicos e deu início ao movimento ambientalista moderno.</p>
-                    <a href="carson.html" class="btn">Ver Biografia e Conquistas</a>
+                    <div>
+                        <h3>Rachel Carson</h3>
+                        <div class="subtitle">Bióloga Marinha & Escritora</div>
+                        <p>Autora da obra seminal <em>Primavera Silenciosa</em>. Seus estudos revelaram os graves efeitos do uso indevido de agrotóxicos e deram origem ao movimento ambientalista moderno.</p>
+                    </div>
+                    <a href="carson.html" class="btn">Explorar Biografia e Obras</a>
                 </div>
             </article>
 
+            <!-- Wangari Maathai -->
             <article class="card card-maathai">
-                <div class="card-header">
-                    <h3>Wangari Maathai</h3>
-                    <span>Ativista e Prêmio Nobel da Paz</span>
+                <div class="card-img-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a2/Wangari_Maathai_2001.jpg" alt="Wangari Maathai">
                 </div>
                 <div class="card-body">
-                    <p>Criadora do <em>Movimento Cinturão Verde</em> no Quênia. Foi a primeira mulher africana a receber o Nobel da Paz pelo trabalho com reflorestamento comunitário.</p>
-                    <a href="maathai.html" class="btn">Ver Biografia e Conquistas</a>
+                    <div>
+                        <h3>Wangari Maathai</h3>
+                        <div class="subtitle">Ativista & Prêmio Nobel da Paz</div>
+                        <p>Fundadora do <em>Movimento Cinturão Verde</em>. Liderou o plantio de mais de 50 milhões de árvores no Quênia, unindo preservação ecológica e direitos das mulheres.</p>
+                    </div>
+                    <a href="maathai.html" class="btn">Explorar Biografia e Obras</a>
                 </div>
             </article>
 
+            <!-- Niéde Guidon -->
             <article class="card card-guidon">
-                <div class="card-header">
-                    <h3>Niéde Guidon</h3>
-                    <span>Arqueóloga Brasileira</span>
+                <div class="card-img-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/eb/Ni%C3%A9de_Guidon_em_2015.jpg" alt="Niéde Guidon">
                 </div>
                 <div class="card-body">
-                    <p>Liderou a preservação da Serra da Capivara no Piauí, revelando pinturas rupestres e novos dados sobre a presença humana nas Américas.</p>
-                    <a href="guidon.html" class="btn">Ver Biografia e Conquistas</a>
+                    <div>
+                        <h3>Niéde Guidon</h3>
+                        <div class="subtitle">Arqueóloga & Guardiã da Caatinga</div>
+                        <p>Responsável pela criação do Parque Nacional Serra da Capivara no Piauí. Suas descobertas revolucionaram as teorias do povoamento do continente americano.</p>
+                    </div>
+                    <a href="guidon.html" class="btn">Explorar Biografia e Obras</a>
                 </div>
             </article>
 
         </section>
+
+        <section class="quotes-section">
+            <h2>Grandes Frases de Inspiradoras</h2>
+            <div class="quote-box">
+                "Na natureza, nada existe sozinho."
+                <span class="quote-author">— Rachel Carson</span>
+            </div>
+            <div class="quote-box">
+                "Até as menores ações contam. É fazendo a nossa parte que transformamos o mundo."
+                <span class="quote-author">— Wangari Maathai</span>
+            </div>
+            <div class="quote-box">
+                "Preservar a nossa história pré-histórica é entender as raízes da humanidade."
+                <span class="quote-author">— Niéde Guidon</span>
+            </div>
+        </section>
     </main>
 
     <footer>
-        <p>Mostra do Conhecimento 2026 | Preservando o Meio Ambiente e a Memória</p>
+        <p>Mostra do Conhecimento 2026 | Projeto Educacional e de Preservação Histórica</p>
     </footer>
 
 </body>
