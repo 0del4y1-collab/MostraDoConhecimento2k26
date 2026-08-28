@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Guardiãs da Natureza e da História | Mostra do Conhecimento</title>
+    <!-- Biblioteca do efeito de Confetes -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <style>
         :root {
             --bg-color: #f4f7f4;
@@ -28,7 +30,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; transition: background-color 0.3s, color 0.3s; }
         body { background-color: var(--bg-color); color: var(--text-color); line-height: 1.6; }
 
-        /* Header & Top Bar */
+        /* Top Bar */
         .top-bar { display: flex; justify-content: flex-end; padding: 15px 20px; max-width: 1200px; margin: 0 auto; }
         .theme-toggle { background: var(--primary-green); color: white; border: none; padding: 8px 16px; border-radius: 20px; cursor: pointer; font-weight: bold; }
 
@@ -46,7 +48,6 @@
 
         .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
 
-        /* Intro & Filter */
         .intro-section { text-align: center; margin-bottom: 30px; }
         .intro-section h2 { font-size: 2.2rem; color: var(--primary-green); margin-bottom: 15px; }
         
@@ -68,7 +69,6 @@
         }
 
         .card:hover { transform: translateY(-8px); }
-
         .card-img-container { height: 280px; overflow: hidden; position: relative; background-color: #e0e0e0; }
         .card-img-container img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
 
@@ -79,7 +79,7 @@
         .btn-group { display: flex; flex-direction: column; gap: 10px; margin-top: 15px; }
         .btn {
             display: block; text-align: center; padding: 12px 15px; color: #ffffff;
-            text-decoration: none; border-radius: 8px; font-weight: bold; text-align: center; border: none; cursor: pointer;
+            text-decoration: none; border-radius: 8px; font-weight: bold; border: none; cursor: pointer;
         }
         .btn-primary { background-color: var(--accent-green); }
         .btn-secondary { background-color: transparent; color: var(--text-color); border: 2px solid var(--primary-green); }
@@ -96,14 +96,40 @@
         .quotes-section h2 { font-size: 2rem; color: var(--primary-green); margin-bottom: 20px; }
         .quote-box { background: var(--card-bg); padding: 20px; border-radius: 10px; margin-bottom: 15px; font-style: italic; box-shadow: 0 4px 10px var(--shadow); }
 
-        /* Quiz Section */
-        .quiz-section { background: var(--card-bg); padding: 30px; border-radius: 15px; margin-top: 60px; box-shadow: 0 8px 20px var(--shadow); }
-        .quiz-section h2 { color: var(--primary-green); text-align: center; margin-bottom: 20px; }
-        .quiz-question { margin-bottom: 20px; }
-        .quiz-options button { display: block; width: 100%; text-align: left; padding: 10px; margin: 5px 0; border: 1px solid #ccc; border-radius: 5px; background: var(--bg-color); color: var(--text-color); cursor: pointer; }
-        .quiz-options button:hover { background: var(--quote-bg); }
+        /* Quiz Section Estilizada */
+        .quiz-section { background: var(--card-bg); padding: 35px; border-radius: 15px; margin-top: 60px; box-shadow: 0 8px 20px var(--shadow); }
+        .quiz-section h2 { color: var(--primary-green); text-align: center; margin-bottom: 10px; font-size: 2.2rem; }
+        .quiz-intro { text-align: center; margin-bottom: 30px; opacity: 0.9; }
 
-        /* Modal / Pop-up */
+        .quiz-question-card {
+            background: var(--bg-color);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            border-left: 5px solid var(--primary-green);
+        }
+        .quiz-question-card p { font-size: 1.1rem; font-weight: bold; margin-bottom: 15px; }
+
+        .quiz-options { display: grid; grid-template-columns: 1fr; gap: 10px; }
+        .quiz-options button {
+            text-align: left;
+            padding: 12px 18px;
+            border: 1px solid rgba(0,0,0,0.15);
+            border-radius: 8px;
+            background: var(--card-bg);
+            color: var(--text-color);
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+        }
+        .quiz-options button:hover:not(:disabled) { background: var(--quote-bg); transform: translateX(5px); }
+
+        .quiz-feedback-item { margin-top: 10px; font-weight: bold; font-size: 0.95rem; display: none; }
+
+        /* Score Box */
+        .score-box { text-align: center; margin-top: 30px; padding: 20px; background: var(--quote-bg); border-radius: 10px; font-size: 1.3rem; font-weight: bold; color: var(--primary-green); }
+
+        /* Modal */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); justify-content: center; align-items: center; z-index: 1000; }
         .modal-content { background: var(--card-bg); padding: 30px; border-radius: 15px; max-width: 500px; width: 90%; text-align: center; position: relative; }
         .close-btn { position: absolute; top: 10px; right: 15px; font-size: 1.5rem; cursor: pointer; color: var(--text-color); }
@@ -128,7 +154,6 @@
             <h2>Mulheres que Mudaram o Mundo</h2>
             <p style="margin-bottom: 20px;">Filtre pelas áreas de atuação abaixo:</p>
             
-            <!-- 2. Filtro Interativo -->
             <div class="filter-buttons">
                 <button class="filter-btn active" onclick="filterCards('all')">Todas</button>
                 <button class="filter-btn" onclick="filterCards('ecologia')">Ciência / Ecologia</button>
@@ -193,7 +218,7 @@
 
         </section>
 
-        <!-- 4. Linha do Tempo -->
+        <!-- Linha do Tempo -->
         <section class="timeline-section">
             <h2>Linha do Tempo das Conquistas</h2>
             <div class="timeline">
@@ -224,25 +249,134 @@
             <div class="quote-box">"Preservar a pré-história é entender as raízes da humanidade." — <strong>Niéde Guidon</strong></div>
         </section>
 
-        <!-- 5. Quiz Interativo -->
+        <!-- QUIZ DE 10 PERGUNTAS COM EFEITO DE CONFETES -->
         <section class="quiz-section">
-            <h2>📝 Teste seus Conhecimentos</h2>
-            <div id="quiz-container">
-                <div class="quiz-question">
-                    <p><strong>1. Quem foi a primeira ambientalista a ganhar o Prêmio Nobel da Paz?</strong></p>
+            <h2>📝 Desafio do Conhecimento (10 Perguntas)</h2>
+            <p class="quiz-intro">Responda às perguntas abaixo para testar o seu aprendizado e desbloquear o efeito de vitória!</p>
+            
+            <div id="quiz-list">
+                
+                <!-- Q1 -->
+                <div class="quiz-question-card">
+                    <p>1. Qual era a principal profissão de Rachel Carson?</p>
                     <div class="quiz-options">
-                        <button onclick="checkQuiz(this, false)">Rachel Carson</button>
-                        <button onclick="checkQuiz(this, true)">Wangari Maathai</button>
-                        <button onclick="checkQuiz(this, false)">Niéde Guidon</button>
+                        <button onclick="checkQuestion(this, false, 1)">Arqueóloga</button>
+                        <button onclick="checkQuestion(this, true, 1)">Bióloga Marinha e Escritora</button>
+                        <button onclick="checkQuestion(this, false, 1)">Botânica</button>
                     </div>
+                    <div class="quiz-feedback-item"></div>
                 </div>
+
+                <!-- Q2 -->
+                <div class="quiz-question-card">
+                    <p>2. Qual é o nome do livro revolucionário publicado por Rachel Carson em 1962?</p>
+                    <div class="quiz-options">
+                        <button onclick="checkQuestion(this, true, 2)">Primavera Silenciosa</button>
+                        <button onclick="checkQuestion(this, false, 2)">O Cinturão Verde</button>
+                        <button onclick="checkQuestion(this, false, 2)">Raízes da Terra</button>
+                    </div>
+                    <div class="quiz-feedback-item"></div>
+                </div>
+
+                <!-- Q3 -->
+                <div class="quiz-question-card">
+                    <p>3. Wangari Maathai criou qual importante movimento comunitário no Quênia?</p>
+                    <div class="quiz-options">
+                        <button onclick="checkQuestion(this, false, 3)">Movimento Salve as Águas</button>
+                        <button onclick="checkQuestion(this, true, 3)">Movimento Cinturão Verde</button>
+                        <button onclick="checkQuestion(this, false, 3)">Projeto Serra da Capivara</button>
+                    </div>
+                    <div class="quiz-feedback-item"></div>
+                </div>
+
+                <!-- Q4 -->
+                <div class="quiz-question-card">
+                    <p>4. Em que ano Wangari Maathai fez história ao ganhar o Prêmio Nobel da Paz?</p>
+                    <div class="quiz-options">
+                        <button onclick="checkQuestion(this, false, 4)">1991</button>
+                        <button onclick="checkQuestion(this, false, 4)">1985</button>
+                        <button onclick="checkQuestion(this, true, 4)">2004</button>
+                    </div>
+                    <div class="quiz-feedback-item"></div>
+                </div>
+
+                <!-- Q5 -->
+                <div class="quiz-question-card">
+                    <p>5. Em qual estado brasileiro a arqueóloga Niéde Guidon concentrou suas famosas pesquisas?</p>
+                    <div class="quiz-options">
+                        <button onclick="checkQuestion(this, true, 5)">Piauí</button>
+                        <button onclick="checkQuestion(this, false, 5)">Bahia</button>
+                        <button onclick="checkQuestion(this, false, 5)">Minas Gerais</button>
+                    </div>
+                    <div class="quiz-feedback-item"></div>
+                </div>
+
+                <!-- Q6 -->
+                <div class="quiz-question-card">
+                    <p>6. Qual parque nacional de extrema importância histórica foi criado por iniciativa de Niéde Guidon?</p>
+                    <div class="quiz-options">
+                        <button onclick="checkQuestion(this, false, 6)">Parque Nacional da Chapada Diamantina</button>
+                        <button onclick="checkQuestion(this, true, 6)">Parque Nacional Serra da Capivara</button>
+                        <button onclick="checkQuestion(this, false, 6)">Parque Nacional do Tijuca</button>
+                    </div>
+                    <div class="quiz-feedback-item"></div>
+                </div>
+
+                <!-- Q7 -->
+                <div class="quiz-question-card">
+                    <p>7. Qual perigo ecológico o livro de Rachel Carson alertava a sociedade mundial?</p>
+                    <div class="quiz-options">
+                        <button onclick="checkQuestion(this, true, 7)">O uso descontrolado de agrotóxicos e inseticidas (DDT)</button>
+                        <button onclick="checkQuestion(this, false, 7)">O derretimento das geleiras polares</button>
+                        <button onclick="checkQuestion(this, false, 7)">O lixo plástico nos oceanos</button>
+                    </div>
+                    <div class="quiz-feedback-item"></div>
+                </div>
+
+                <!-- Q8 -->
+                <div class="quiz-question-card">
+                    <p>8. Aproximadamente quantas árvores foram plantadas pelo Movimento Cinturão Verde idealizado por Maathai?</p>
+                    <div class="quiz-options">
+                        <button onclick="checkQuestion(this, false, 8)">Cerca de 1 milhão</button>
+                        <button onclick="checkQuestion(this, false, 8)">Apenas 100 mil</button>
+                        <button onclick="checkQuestion(this, true, 8)">Mais de 50 milhões</button>
+                    </div>
+                    <div class="quiz-feedback-item"></div>
+                </div>
+
+                <!-- Q9 -->
+                <div class="quiz-question-card">
+                    <p>9. O que as descobertas de pinturas rupestres e artefatos de Niéde Guidon ajudaram a comprovar?</p>
+                    <div class="quiz-options">
+                        <button onclick="checkQuestion(this, true, 9)">Que o ser humano chegou à América muito antes do que se pensava</button>
+                        <button onclick="checkQuestion(this, false, 9)">Que os dinossauros viveram junto dos humanos</button>
+                        <button onclick="checkQuestion(this, false, 9)">A descoberta de novas espécies de plantas medicinais</button>
+                    </div>
+                    <div class="quiz-feedback-item"></div>
+                </div>
+
+                <!-- Q10 -->
+                <div class="quiz-question-card">
+                    <p>10. Qual destas frases marcantes é atribuída à bióloga Rachel Carson?</p>
+                    <div class="quiz-options">
+                        <button onclick="checkQuestion(this, false, 10)">"Preservar a pré-história é entender o futuro."</button>
+                        <button onclick="checkQuestion(this, true, 10)">"Na natureza, nada existe sozinho."</button>
+                        <button onclick="checkQuestion(this, false, 10)">"A árvore é a vida da terra."</button>
+                    </div>
+                    <div class="quiz-feedback-item"></div>
+                </div>
+
             </div>
-            <p id="quiz-feedback" style="margin-top: 15px; font-weight: bold; text-align: center;"></p>
+
+            <!-- Placar de pontuação final -->
+            <div class="score-box" id="score-box">
+                Sua Pontuação: <span id="score">0</span> / 10
+            </div>
         </section>
 
     </main>
 
-    <!-- 3. Modal / Pop-up de Curiosidades -->
+    <!-- Modal -->
     <div id="infoModal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal()">&times;</span>
@@ -255,8 +389,10 @@
         <p>Mostra do Conhecimento 2026 | Projeto Educacional e Interativo</p>
     </footer>
 
-    <!-- JavaScript das Inovações -->
+    <!-- JavaScript das Funções -->
     <script>
+        let totalScore = 0;
+
         // 1. Modo Escuro
         function toggleTheme() {
             document.body.classList.toggle('dark-mode');
@@ -296,21 +432,45 @@
             document.getElementById('infoModal').style.display = 'none';
         }
 
-        // 5. Lógica do Quiz
-        function checkQuiz(btn, isCorrect) {
-            const feedback = document.getElementById('quiz-feedback');
-            const buttons = btn.parentElement.querySelectorAll('button');
-            
+        // Lógica do Quiz com Confetes
+        function checkQuestion(btn, isCorrect, questionNum) {
+            const card = btn.closest('.quiz-question-card');
+            const feedback = card.querySelector('.quiz-feedback-item');
+            const buttons = card.querySelectorAll('button');
+
+            // Desabilita os botões da pergunta respondida
             buttons.forEach(b => b.disabled = true);
+
+            feedback.style.display = 'block';
 
             if (isCorrect) {
                 btn.style.background = '#81c784';
-                feedback.textContent = '✨ Parabéns! Resposta Correta!';
+                btn.style.color = '#fff';
+                feedback.textContent = '🎉 Resposta Correta!';
                 feedback.style.color = 'green';
+                
+                totalScore++;
+                document.getElementById('score').textContent = totalScore;
+
+                // Efeito de Confetes na tela!
+                confetti({
+                    particleCount: 80,
+                    spread: 70,
+                    origin: { y: 0.6 }
+                });
+
             } else {
                 btn.style.background = '#e57373';
-                feedback.textContent = '❌ Resposta incorreta. A resposta certa era Wangari Maathai!';
+                btn.style.color = '#fff';
+                feedback.textContent = '❌ Resposta Incorreta!';
                 feedback.style.color = 'red';
+            }
+
+            // Se acertou todas as 10, joga uma chuva extra de confetes!
+            if(totalScore === 10) {
+                setTimeout(() => {
+                    confetti({ particleCount: 200, spread: 100, origin: { y: 0.4 } });
+                }, 500);
             }
         }
     </script>
